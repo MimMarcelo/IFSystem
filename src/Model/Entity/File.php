@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\User[] $users
  * @property FileEntity $_file File to be uploaded
  */
-class File extends Entity
+class File extends FileEntity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,18 +33,14 @@ class File extends Entity
         'file' => true
     ];
     
-    public function getFileName(){
-        return $this->id.".".$this->extension;
-    }
-
     public function _setFile($_file) {
-        $this->_file = new FileEntity($_file);
-        $this->extension = $this->_file->getExtension();
+        $this->setFile($_file);
+        $this->extension = $this->getExtension();
     }
     
     public function upload() {
-        $this->_file->setFileName($this->id);
-        $this->_file->setPathToSaveFile('img');
-        $this->_file->upload();
+        $this->setFileName($this->id);
+        $this->setPathToSaveFile('img');
+        parent::upload();
     }
 }

@@ -28,7 +28,7 @@
             <?php foreach ($files as $file): ?>
             <tr>
                 <td><?= $this->Number->format($file->id) ?></td>
-                <td><a href="img/<?= $file->getFileName() ?>">See file .<?= h($file->extension) ?></td>
+                <td><a href="img/<?= $file->getFileEntityName() ?>">See file .<?= h($file->extension) ?></td>
                 <td><?= h($file->created) ?></td>
                 <td><?= h($file->modified) ?></td>
                 <td class="actions">
