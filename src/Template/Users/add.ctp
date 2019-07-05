@@ -13,11 +13,11 @@
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
+    <?= $this->Form->create($user, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->control('file_id', ['options' => $files, 'empty' => true]);
+            echo $this->Form->file('file');
             echo $this->Form->control('name');
             echo $this->Form->control('email');
             echo $this->Form->control('password');

@@ -16,7 +16,6 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\File $file
  */
 class User extends Entity
 {
@@ -37,7 +36,6 @@ class User extends Entity
         'username' => true,
         'created' => true,
         'modified' => true,
-        'file' => true
     ];
 
     /**
@@ -48,7 +46,6 @@ class User extends Entity
     protected $_hidden = [
         'password'
     ];
-    
     
     protected function _setPassword($value)
     {

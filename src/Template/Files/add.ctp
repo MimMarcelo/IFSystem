@@ -13,7 +13,7 @@
     </ul>
 </nav>
 <div class="files form large-9 medium-8 columns content">
-    <?= $this->Form->create($file, array('type' => 'file')) ?>
+    <?= $this->Form->create($file, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add File') ?></legend>
         <?php

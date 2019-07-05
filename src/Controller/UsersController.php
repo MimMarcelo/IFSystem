@@ -7,11 +7,17 @@ use App\Controller\AppController;
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\FilesTable $Files
  *
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class UsersController extends AppController
 {
+    public function initialize() {
+        parent::initialize();
+        $this->loadModel("Files"); // Enable manipulate File objects
+    }
+    
     /**
      * Index method
      *
@@ -50,9 +56,21 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $file = $this->Files->newEntity(); // To save and get file_id
         $user = $this->Users->newEntity();
+        
         if ($this->request->is('post')) {
+            $file = $this->Files->patchEntity($file, $this->request->getData()); // Load file data
             $user = $this->Users->patchEntity($user, $this->request->getData());
+        
+//            echo '<pre>';
+//            print_r($file);
+//            die();
+            if ($this->Files->save($file)) { // Record data at database
+                $file->upload("img");        // Move file to server directory
+                $user->file_id = $file->id;  // Get file_id
+            }
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

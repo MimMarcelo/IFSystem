@@ -51,7 +51,7 @@ class FilesController extends AppController
         if ($this->request->is('post')) {
             $file = $this->Files->patchEntity($file, $this->request->getData());
             if ($this->Files->save($file)) {
-                $file->upload();
+                $file->upload("img");
                 $this->Flash->success(__('The file has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

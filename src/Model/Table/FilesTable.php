@@ -61,8 +61,10 @@ class FilesTable extends Table
             ->scalar('extension')
 //            ->maxLength('extension', 5)
             ->requirePresence('extension', 'create')
-            ->notEmptyString('extension');
+//            ->notEmptyString('extension')
+            ;
 
         return $validator;
     }
+    
 }
